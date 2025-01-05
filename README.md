@@ -1,29 +1,41 @@
 # Monitor-GitLab-Pipelines-Using-Prometheus-and-Grafana
 ### Step #1:Setting Up the Ubuntu Instance
 First Update the package list.
-``` sudo apt update ```
+```bash
+sudo apt update
+ ```
 Install Docker and pip if it’s not already installed.
-``` sudo apt install -y docker.io python3-pip ```
+```bash
+sudo apt install -y docker.io python3-pip
+ ```
 Install Docker-Compose to manage multiple containers.
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ````
 Change its permissions.
 
-``` sudo chmod +x /usr/local/bin/docker-compose ```
+```bash
+ sudo chmod +x /usr/local/bin/docker-compose
+```
 
 Install the Virtual environment.
 
-```sudo apt install python3.12-venv ```
+```bash
+sudo apt install python3.12-venv
+ ```
 
 Create a new virtual environment named venv.
 
 
-``` python3 -m venv venv ```
+```bash
+ python3 -m venv venv
+```
 
 Activate the virtual environment.
 
-``` source venv/bin/activate ```
+```bash
+ source venv/bin/activate 
+```
 
 ### Step #2:Create Project Structure and Files
 Create a folder for your project and navigate into it.
