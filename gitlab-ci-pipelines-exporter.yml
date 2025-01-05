@@ -1,0 +1,27 @@
+log:
+  level: info
+
+gitlab:
+  url: https://gitlab.com
+  token: '<gitlab_token>'
+
+# Example public projects to monitor
+projects:
+  - name: demo/test_pipeline
+    # Pull environments related metrics prefixed with 'stable' for this project
+    pull:
+      environments:
+        enabled: true
+      refs:
+        branches:
+          # Monitor pipelines related to project branches
+          # (optional, default: true)
+          enabled: true
+
+          # Filter for branches to include
+          # (optional, default: "^main|master$" -- main/master branches)
+          regexp: ".*"
+        merge_requests:
+          # Monitor pipelines related to project merge requests
+          # (optional, default: false)
+          enabled: true
