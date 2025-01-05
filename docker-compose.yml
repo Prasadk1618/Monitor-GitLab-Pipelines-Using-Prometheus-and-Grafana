@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  grafana:
+    image: docker.io/grafana/grafana:latest
+    ports:
+      - 3000:3000
+    environment:
+       GF_INSTALL_PLUGINS: grafana-polystat-panel,yesoreyeram-boomtable-panel
+    links:
+      - prometheus
+
+  prometheus:
+      image: docker.io/prom/prometheus:v2.28.1
+      ports:
+       - 9090:9090
+      links:
+       - gitlab-ci-pipelines-exporter
+      volumes:
+       - ./Prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  gitlab-ci-pipelines-exporter:
+    image: docker.io/mvisonneau/gitlab-ci-pipelines-exporter:v0.5.2
+    ports:
+      - 8080:8080
+    environment:
+      GCPE_CONFIG: /etc/gitlab-ci-pipelines-exporter.yml
+    volumes:
+      - type: bind
+        source: ./gitlab-ci-pipelines-exporter.yml
+        target: /etc/gitlab-ci-pipelines-exporter.yml
+
+  customized_exporter:
+        build: .
+        ports:
+            - "8500:8500"
